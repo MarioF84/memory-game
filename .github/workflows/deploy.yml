@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main, copilot/build-memory-game-children]
+    branches: [main, copilot/build-memory-game-children, copilot/improve-card-animation-tap]
   workflow_dispatch:
 
 permissions:

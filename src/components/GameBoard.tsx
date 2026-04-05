@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useGameStore } from '../store/gameStore';
 import TopBar from './TopBar';
 import Card from './Card';
@@ -19,9 +20,19 @@ export default function GameBoard() {
   const otherPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
   const otherPlayer = players[otherPlayerIndex];
 
-  // Once the current player's turn is done (waiting for other player to confirm),
-  // switch the color scheme to the next player's color immediately.
-  const displayColor = isWaitingForSecondPlayer ? otherPlayer.color : currentPlayer.color;
+  // Delay the color switch so it only changes after the player has lifted
+  // their finger from the card (~400 ms after isWaitingForSecondPlayer fires).
+  const [delayedIsWaiting, setDelayedIsWaiting] = useState(false);
+  useEffect(() => {
+    if (isWaitingForSecondPlayer) {
+      const t = setTimeout(() => setDelayedIsWaiting(true), 400);
+      return () => clearTimeout(t);
+    } else {
+      setDelayedIsWaiting(false);
+    }
+  }, [isWaitingForSecondPlayer]);
+
+  const displayColor = delayedIsWaiting ? otherPlayer.color : currentPlayer.color;
 
   return (
     <div
