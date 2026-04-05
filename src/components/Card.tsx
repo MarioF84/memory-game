@@ -22,7 +22,7 @@ export default function Card({ card, onClick, playerColor, isLastMatched }: Card
   if (card.isMatched) {
     return (
       <div
-        className={`aspect-square rounded-2xl transition-all duration-500
+        className={`w-full h-full rounded-xl transition-all duration-500
           ${matchAnim ? 'scale-110' : 'scale-0 opacity-0'}
         `}
       />
@@ -31,7 +31,7 @@ export default function Card({ card, onClick, playerColor, isLastMatched }: Card
 
   return (
     <div
-      className="aspect-square perspective-1000 cursor-pointer select-none"
+      className="w-full h-full perspective-1000 cursor-pointer select-none"
       onClick={onClick}
     >
       <div
@@ -41,7 +41,7 @@ export default function Card({ card, onClick, playerColor, isLastMatched }: Card
       >
         {/* Card Back */}
         <div
-          className="absolute inset-0 backface-hidden rounded-2xl flex items-center justify-center shadow-md border-4"
+          className="absolute inset-0 backface-hidden rounded-xl flex items-center justify-center shadow-md border-4"
           style={{ borderColor: playerColor, backgroundColor: playerColor + '22' }}
         >
           <span className="text-3xl">❓</span>
@@ -49,7 +49,7 @@ export default function Card({ card, onClick, playerColor, isLastMatched }: Card
 
         {/* Card Front */}
         <div
-          className="absolute inset-0 backface-hidden rotate-y-180 rounded-2xl flex flex-col items-center justify-center shadow-md bg-white border-4"
+          className="absolute inset-0 backface-hidden rotate-y-180 rounded-xl flex flex-col items-center justify-center shadow-md bg-white border-4"
           style={{ borderColor: playerColor }}
         >
           <span className="text-3xl leading-none">{card.emoji}</span>

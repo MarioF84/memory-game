@@ -13,7 +13,7 @@ export default function TopBar() {
           return (
             <div
               key={idx}
-              className={`flex-1 flex flex-col items-center justify-center py-3 px-2 transition-all duration-500
+              className={`flex-1 flex flex-col items-center justify-center py-1.5 px-2 transition-all duration-500
                 ${isActive ? 'scale-100' : 'scale-95 opacity-70'}
               `}
               style={{
@@ -21,15 +21,15 @@ export default function TopBar() {
                 borderBottom: isActive ? `4px solid ${player.color}` : '4px solid transparent',
               }}
             >
-              <div className="flex items-center gap-1 mb-0.5">
+              <div className="flex items-center gap-1">
                 {isActive && (
-                  <span className="text-white text-base animate-bounce">▶</span>
+                  <span className="text-white text-sm animate-bounce">▶</span>
                 )}
                 {isNext && (
-                  <span className="text-lg animate-spin">⏳</span>
+                  <span className="text-sm animate-spin">⏳</span>
                 )}
                 <span
-                  className={`text-base font-extrabold truncate max-w-[90px]
+                  className={`text-sm font-extrabold truncate max-w-[90px]
                     ${isActive ? 'text-white' : 'text-gray-500'}
                   `}
                 >
@@ -37,14 +37,14 @@ export default function TopBar() {
                 </span>
               </div>
               <div
-                className={`text-3xl font-black leading-none
+                className={`text-2xl font-black leading-none
                   ${isActive ? 'text-white' : 'text-gray-400'}
                 `}
               >
                 {player.score}
               </div>
               <div
-                className={`text-xs font-semibold mt-0.5
+                className={`text-[10px] font-semibold
                   ${isActive ? 'text-white/80' : 'text-gray-400'}
                 `}
               >

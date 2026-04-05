@@ -21,7 +21,7 @@ export default function GameBoard() {
 
   return (
     <div
-      className="min-h-screen flex flex-col"
+      className="h-dvh flex flex-col"
       style={{ backgroundColor: currentPlayer.color + '18' }}
     >
       <TopBar />
@@ -45,8 +45,8 @@ export default function GameBoard() {
       </div>
 
       {/* Card Grid: 8 rows × 4 cols */}
-      <div className="flex-1 p-3">
-        <div className="grid grid-cols-4 gap-2">
+      <div className="flex-1 p-2 min-h-0">
+        <div className="grid grid-cols-4 grid-rows-8 gap-1.5 h-full">
           {cards.map((card) => (
             <Card
               key={card.id}
