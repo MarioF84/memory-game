@@ -20,12 +20,12 @@ export default function GameBoard() {
   const otherPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
   const otherPlayer = players[otherPlayerIndex];
 
-  // Delay the color switch so it only changes after the player has lifted
-  // their finger from the card (~400 ms after isWaitingForSecondPlayer fires).
+  // Delay the color switch and hide button activation by 1s after the last
+  // card tap so the current player can see the mismatch before handing over.
   const [delayedIsWaiting, setDelayedIsWaiting] = useState(false);
   useEffect(() => {
     if (isWaitingForSecondPlayer) {
-      const t = setTimeout(() => setDelayedIsWaiting(true), 400);
+      const t = setTimeout(() => setDelayedIsWaiting(true), 1000);
       return () => clearTimeout(t);
     } else {
       setDelayedIsWaiting(false);
@@ -78,14 +78,14 @@ export default function GameBoard() {
       <div className="px-3 pb-2 pt-1">
         <button
           onClick={confirmMismatch}
-          disabled={!isWaitingForSecondPlayer}
+          disabled={!delayedIsWaiting}
           className="w-full py-2.5 rounded-2xl text-base font-extrabold text-white shadow transition-all active:scale-95"
           style={{
-            backgroundColor: isWaitingForSecondPlayer ? otherPlayer.color : '#d1d5db',
-            opacity: isWaitingForSecondPlayer ? 1 : 0.4,
+            backgroundColor: delayedIsWaiting ? otherPlayer.color : '#d1d5db',
+            opacity: delayedIsWaiting ? 1 : 0.4,
           }}
         >
-          {isWaitingForSecondPlayer
+          {delayedIsWaiting
             ? `🙈 Hide Cards & ${otherPlayer.name}'s Turn!`
             : '🙈 Hide Cards'}
         </button>
