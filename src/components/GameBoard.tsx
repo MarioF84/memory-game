@@ -79,7 +79,7 @@ export default function GameBoard() {
         <button
           onClick={confirmMismatch}
           disabled={!delayedIsWaiting}
-          className="w-full py-2.5 rounded-2xl text-base font-extrabold text-white shadow transition-all active:scale-95"
+          className="w-full py-2.5 rounded-2xl text-base font-extrabold text-white shadow transition-transform active:scale-95"
           style={{
             backgroundColor: delayedIsWaiting ? otherPlayer.color : '#d1d5db',
             opacity: delayedIsWaiting ? 1 : 0.4,
