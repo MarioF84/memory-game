@@ -86,7 +86,7 @@ export default function GameBoard() {
           }}
         >
           {isWaitingForSecondPlayer && !delayedIsWaiting && (
-            <span className="absolute bottom-0 left-0 h-1 bg-white/60 animate-progress-fill" />
+            <span className="absolute inset-y-0 left-0 bg-white/30 animate-progress-fill" />
           )}
           {delayedIsWaiting
             ? `🙈 Hide Cards & ${otherPlayer.name}'s Turn!`
