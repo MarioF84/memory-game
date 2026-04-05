@@ -6,3 +6,4 @@
 - If the workflow shows `action_required` due to environment protection rules on a non-`main` branch, note this to the user and provide the direct Actions run URL for them to approve.
 - When possible, prefer merging work to `main` so deployments are automatic without manual approval.
 - Always print a link to the deploy action.
+- **Always** add a new branch to trigger list in .github/workflows/deploy.yml as as you created a new branch 
