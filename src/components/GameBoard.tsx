@@ -59,23 +59,22 @@ export default function GameBoard() {
         </div>
       </div>
 
-      {/* Confirm Mismatch Button */}
-      {isWaitingForSecondPlayer && (
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur border-t shadow-2xl z-50">
-          <div className="max-w-sm mx-auto">
-            <p className="text-center text-gray-600 text-sm mb-2">
-              No match! <strong>{otherPlayer.name}</strong>, tap below to hide cards and take your turn.
-            </p>
-            <button
-              onClick={confirmMismatch}
-              className="w-full py-4 rounded-2xl text-xl font-extrabold text-white shadow-lg active:scale-95 transition-transform"
-              style={{ backgroundColor: otherPlayer.color }}
-            >
-              🙈 Hide Cards & My Turn!
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Confirm Mismatch Button — always in layout, disabled when not needed */}
+      <div className="px-3 pb-2 pt-1">
+        <button
+          onClick={confirmMismatch}
+          disabled={!isWaitingForSecondPlayer}
+          className="w-full py-2.5 rounded-2xl text-base font-extrabold text-white shadow transition-all active:scale-95"
+          style={{
+            backgroundColor: isWaitingForSecondPlayer ? otherPlayer.color : '#d1d5db',
+            opacity: isWaitingForSecondPlayer ? 1 : 0.4,
+          }}
+        >
+          {isWaitingForSecondPlayer
+            ? `🙈 Hide Cards & ${otherPlayer.name}'s Turn!`
+            : '🙈 Hide Cards'}
+        </button>
+      </div>
     </div>
   );
 }
