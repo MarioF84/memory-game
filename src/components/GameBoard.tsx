@@ -39,7 +39,7 @@ export default function GameBoard() {
       className="h-dvh flex flex-col"
       style={{ backgroundColor: displayColor + '18' }}
     >
-      <TopBar />
+      <TopBar visualActivePlayerIndex={delayedIsWaiting ? otherPlayerIndex as 0 | 1 : currentPlayerIndex} />
 
       {/* Status Banner */}
       <div
@@ -79,12 +79,15 @@ export default function GameBoard() {
         <button
           onClick={confirmMismatch}
           disabled={!delayedIsWaiting}
-          className="w-full py-2.5 rounded-2xl text-base font-extrabold text-white shadow transition-transform active:scale-95"
+          className="relative overflow-hidden w-full py-2.5 rounded-2xl text-base font-extrabold text-white shadow transition-transform active:scale-95"
           style={{
             backgroundColor: delayedIsWaiting ? otherPlayer.color : '#d1d5db',
             opacity: delayedIsWaiting ? 1 : 0.4,
           }}
         >
+          {isWaitingForSecondPlayer && !delayedIsWaiting && (
+            <span className="absolute bottom-0 left-0 h-1 bg-white/60 animate-progress-fill" />
+          )}
           {delayedIsWaiting
             ? `🙈 Hide Cards & ${otherPlayer.name}'s Turn!`
             : '🙈 Hide Cards'}

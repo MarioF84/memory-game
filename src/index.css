@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@keyframes progress-fill {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+.animate-progress-fill {
+  animation: progress-fill 1s linear forwards;
+}
+
 @layer base {
   * {
     -webkit-tap-highlight-color: transparent;

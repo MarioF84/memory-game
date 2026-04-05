@@ -1,14 +1,19 @@
 import { useGameStore } from '../store/gameStore';
 
-export default function TopBar() {
+interface TopBarProps {
+  visualActivePlayerIndex?: 0 | 1;
+}
+
+export default function TopBar({ visualActivePlayerIndex }: TopBarProps) {
   const { players, currentPlayerIndex, switchingPlayer } = useGameStore();
+  const displayActiveIndex = visualActivePlayerIndex ?? currentPlayerIndex;
 
   return (
     <div className="sticky top-0 z-50 w-full">
       <div className="flex items-stretch gap-0 shadow-lg">
         {players.map((player, idx) => {
-          const isActive = currentPlayerIndex === idx && !switchingPlayer;
-          const isNext = currentPlayerIndex !== idx && switchingPlayer;
+          const isActive = displayActiveIndex === idx && !switchingPlayer;
+          const isNext = displayActiveIndex !== idx && switchingPlayer;
 
           return (
             <div
