@@ -182,17 +182,10 @@ export const useGameStore = create<GameState>((set, get) => ({
       cards: newCards,
       flippedCards: [],
       isWaitingForSecondPlayer: false,
-      switchingPlayer: true,
-      isLocked: true,
+      switchingPlayer: false,
+      isLocked: false,
+      currentPlayerIndex: nextPlayer,
     });
-
-    setTimeout(() => {
-      set({
-        currentPlayerIndex: nextPlayer,
-        switchingPlayer: false,
-        isLocked: false,
-      });
-    }, 800);
   },
 
   resetGame: (samePlayersReversed = false) => {
