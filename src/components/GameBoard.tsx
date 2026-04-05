@@ -19,17 +19,21 @@ export default function GameBoard() {
   const otherPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
   const otherPlayer = players[otherPlayerIndex];
 
+  // Once the current player's turn is done (waiting for other player to confirm),
+  // switch the color scheme to the next player's color immediately.
+  const displayColor = isWaitingForSecondPlayer ? otherPlayer.color : currentPlayer.color;
+
   return (
     <div
       className="h-dvh flex flex-col"
-      style={{ backgroundColor: currentPlayer.color + '18' }}
+      style={{ backgroundColor: displayColor + '18' }}
     >
       <TopBar />
 
       {/* Status Banner */}
       <div
         className="py-2 px-4 text-center font-bold text-white text-sm shadow"
-        style={{ backgroundColor: currentPlayer.color }}
+        style={{ backgroundColor: displayColor }}
       >
         {switchingPlayer ? (
           <span className="animate-pulse">🔄 Switching to {otherPlayer.name}...</span>
