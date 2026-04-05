@@ -56,7 +56,7 @@ export default function GameBoard() {
               key={card.id}
               card={card}
               onClick={() => !isWaitingForSecondPlayer && !switchingPlayer && flipCard(card.id)}
-              playerColor={currentPlayer.color}
+              playerColor={displayColor}
               isLastMatched={lastMatchedCards?.includes(card.id) ?? false}
             />
           ))}
